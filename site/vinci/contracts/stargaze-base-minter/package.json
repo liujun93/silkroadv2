@@ -1,0 +1,21 @@
+{
+  "name": "@cosmjson/stargaze-base-minter",
+  "chain": "stargaze",
+  "contract": "base-minter",
+  "version": "0.1.0",
+  "description": "stargaze",
+  "author": "Dan Lynch <pyramation@gmail.com>",
+  "homepage": "https://github.com/cosmology-tech/cosmjson/tree/master/packages/stargaze#readme",
+  "license": "SEE LICENSE IN LICENSE",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cosmology-tech/cosmjson"
+  },
+  "bugs": {
+    "url": "https://github.com/cosmology-tech/cosmjson/issues"
+  },
+  "gitHead": "b9e5a80eb5b111f32db781289fa62e3a011e61a6"
+}

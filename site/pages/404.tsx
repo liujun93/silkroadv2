@@ -2,6 +2,8 @@ import type { GetStaticPropsContext } from 'next'
 import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import { Text } from '@components/ui'
+import MyModal from '@components/ui/MyModal/MyModal'
+import { useState } from 'react'
 
 export async function getStaticProps({
   preview,

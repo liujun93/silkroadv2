@@ -1,0 +1,39 @@
+[package]
+name = "ecommerce-dapp"
+description = "An ecommerce store for buying and selling goods on the blockchain"
+version = "0.1.0"
+authors = ["Your Name <your@email.com>"]
+edition = "2018"
+license = "Apache-2.0"
+repository = "https://github.com/your-username/ecommerce-dapp"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[profile.release]
+opt-level = 3
+debug = false
+rpath = false
+lto = true
+debug-assertions = false
+codegen-units = 1
+panic = 'abort'
+incremental = false
+overflow-checks = true
+
+[features]
+# use library feature to disable all instantiate/execute/query exports
+library = []
+
+[dependencies]
+cosmwasm-std = "1.1.0"
+cosmwasm-storage = "1.1.0"
+cw-storage-plus = "1.0.1"
+cosmwasm-schema = "1.1.0"
+thiserror = "1.0.31"
+schemars = "0.8.2"
+serde = "1.0.106"
+
+[dev-dependencies]

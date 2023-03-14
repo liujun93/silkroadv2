@@ -1,12 +1,16 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import cn from 'clsx'
-
+import { useChain } from '@cosmos-kit/react'
 import useAddCard from '@framework/customer/card/use-add-item'
-import { Button, Text } from '@components/ui'
+import { Button, Text, Modal } from '@components/ui'
 import { useUI } from '@components/ui/context'
 import SidebarLayout from '@components/common/SidebarLayout'
 
 import s from './PaymentMethodView.module.css'
+import ButtonTwo from '@components/ui/MyModal/ButtonTwo'
+import Select from '@components/ui/MyModal/Select'
+import { ChainOption } from '@components/ui/types'
+import MyModal from '@components/ui/MyModal/MyModal'
 
 interface Form extends HTMLFormElement {
   cardHolder: HTMLInputElement
@@ -25,6 +29,16 @@ interface Form extends HTMLFormElement {
 const PaymentMethodView: FC = () => {
   const { setSidebarView } = useUI()
   const addCard = useAddCard()
+  const [showModal, setShowModal] = useState(false)
+  const [selectedChain, setSelectedChain] = useState<ChainOption | null>(null)
+  // use the useChain function to connect wallet:
+  const options = [
+    { value: '', label: 'Choose Chain' },
+    { value: 'option1', label: 'Cosmos 🪐' },
+    { value: 'option2', label: 'Osmosis 🧑‍🔬' },
+    { value: 'option3', label: 'Silk 💰 (Coming Soon!)' },
+    { value: 'option4', label: 'Custom IBC ⚛️' },
+  ]
 
   async function handleSubmit(event: React.ChangeEvent<Form>) {
     event.preventDefault()
@@ -42,8 +56,23 @@ const PaymentMethodView: FC = () => {
       city: event.target.city.value,
       country: event.target.country.value,
     })
-
+    // TODO: Implement payment processing functionality
     setSidebarView('CHECKOUT_VIEW')
+  }
+  async function handleConnectWallet(
+    event: React.MouseEvent<HTMLButtonElement>
+  ) {
+    event.preventDefault()
+    // TODO: Implement connect wallet functionality
+    setShowModal(true)
+  }
+
+  function handleCloseModal() {
+    setShowModal(false)
+  }
+
+  const handleSelectChain = (selectedValue: ChainOption | null) => {
+    setSelectedChain(selectedValue)
   }
 
   return (
@@ -52,6 +81,12 @@ const PaymentMethodView: FC = () => {
         <div className="px-4 sm:px-6 flex-1">
           <Text variant="sectionHeading"> Payment Method</Text>
           <div>
+            <div>
+              <div className="mb-6"></div>
+              <div>
+                <ButtonTwo chainName="wasmd" />
+              </div>
+            </div>
             <div className={s.fieldset}>
               <label className={s.label}>Cardholder Name</label>
               <input name="cardHolder" className={s.input} />

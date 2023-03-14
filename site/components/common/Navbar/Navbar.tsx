@@ -4,6 +4,7 @@ import s from './Navbar.module.css'
 import NavbarRoot from './NavbarRoot'
 import { Logo, Container } from '@components/ui'
 import { Searchbar, UserNav } from '@components/common'
+import ButtonTwo from '@components/ui/MyModal/ButtonTwo'
 
 interface Link {
   href: string
@@ -34,11 +35,12 @@ const Navbar: FC<NavbarProps> = ({ links }) => (
           </nav>
         </div>
         {process.env.COMMERCE_SEARCH_ENABLED && (
-          <div className="justify-center flex-1 hidden lg:flex">
-            <Searchbar />
+          <div className="justify-center ml-auto hidden xl:flex">
+            <Searchbar className="mr-3" />
           </div>
         )}
-        <div className="flex items-center justify-end flex-1 space-x-8">
+        <div className="flex items-center justify-end flex-1">
+          <ButtonTwo chainName={'wasmd'} />
           <UserNav />
         </div>
       </div>
